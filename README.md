@@ -2,10 +2,12 @@ vanilla2tender
 ==============
 
 A web application that migrates Vanilla forum data to Tender import-compatible json files
+Based on CherryStrap for rapid development (https://github.com/theguardian/CherryStrap)
 
 ## Requirements
 
 1. A server running Python 2.x
+2. An existing Vanilla forum MySQL database
 
 ## Instructions for Use
 
