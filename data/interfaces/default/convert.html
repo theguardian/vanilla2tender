@@ -1,0 +1,72 @@
+<%inherit file="base.html"/>
+<%!
+	import cherrystrap
+%>
+<%def name="body()">
+<table class="table table-striped">
+<tr><td>Step One:</td><td><button type="button" id="generate_users" class="btn btn-primary">Generate User List JSON</button></td></tr>
+<tr><td>Step Two:</td><td><button type="button" id="generate_categories" class="btn btn-primary">Generate Category List JSON</button></td></tr>
+<tr><td>Step Three:</td><td><button type="button" id="generate_discussions" class="btn btn-primary">Generate All Discussion JSON</button></td></tr>
+<tr><td>Step Four:</td><td><a href="downloadZip"><button type="button" id="download_zip" class="btn btn-primary">Download vanilla2tender.zip</button></a></td></tr>
+</table>
+</%def>
+
+<%def name="headIncludes()">
+</%def>
+
+<%def name="javascriptIncludes()">
+<script>
+
+	$("#generate_users").click(function() {
+		$.ajax({
+			url: "generateUsers",
+			beforeSend: function(res) {
+				$(".ajaxMsg").html('<div class="alert alert-warning"><img src="images/ajax-loader.gif"></div>').show();
+			},
+			success: function(res)
+			{
+				$(".ajaxMsg").html('<div class="alert alert-success">User JSON Generation Success!</div>').show().fadeOut(5000);
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) { 
+				$(".ajaxMsg").html('<div class="alert alert-danger">'+textStatus+': '+errorThrown+'</div>').show().fadeOut(5000); 
+			}
+		});
+		return false;
+	});
+
+	$("#generate_categories").click(function() {
+		$.ajax({
+			url: "generateCategories",
+			beforeSend: function(res) {
+				$(".ajaxMsg").html('<div class="alert alert-warning"><img src="images/ajax-loader.gif"></div>').show();
+			},
+			success: function(res)
+			{
+				$(".ajaxMsg").html('<div class="alert alert-success">Category JSON Generation Success!</div>').show().fadeOut(5000);
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) { 
+				$(".ajaxMsg").html('<div class="alert alert-danger">'+textStatus+': '+errorThrown+'</div>').show().fadeOut(5000); 
+			}
+		});
+		return false;
+	});
+
+	$("#generate_discussions").click(function() {
+		$.ajax({
+			url: "generateDiscussions",
+			beforeSend: function(res) {
+				$(".ajaxMsg").html('<div class="alert alert-warning"><img src="images/ajax-loader.gif"></div>').show();
+			},
+			success: function(res)
+			{
+				$(".ajaxMsg").html('<div class="alert alert-success">Discussion JSON Generation Success!</div>').show().fadeOut(5000);
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) { 
+				$(".ajaxMsg").html('<div class="alert alert-danger">'+textStatus+': '+errorThrown+'</div>').show().fadeOut(5000); 
+			}
+		});
+		return false;
+	});
+
+</script>
+</%def>
